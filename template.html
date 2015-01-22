@@ -178,18 +178,18 @@ width:100%;
         <!-- If the user clicks this button, the saved answer will be value="yes"-->
         <form id="transcription" role="form">
             
-            <!-- Remarks --> 
+            <!-- Transcription --> 
             <div class="form-group">
-                <label class="control-label" for="remarks">Free Transcription</label>
-                <textarea class="form-control" rows="5"  name="remarks" placeholder="Bottom centre of card"></textarea>
+                <label class="control-label" for="transcription">Page Transcription</label>
+                <textarea class="form-control" rows="10" name="transcription" placeholder="Please transcribed the page as accurately as possible."></textarea>
             </div>
 
             <hr />
 
-            <!-- Remarks --> 
+            <!-- Translation --> 
             <div class="form-group">
-                <label class="control-label" for="remarks">Translation</label>
-                <textarea class="form-control" rows="5"  name="remarks" placeholder="Bottom centre of card"></textarea>
+                <label class="control-label" for="translation">Page Translation</label>
+                <textarea class="form-control" rows="10" name="translation" placeholder="Please translate the text to English."></textarea>
             </div>
 
             <hr />
@@ -197,7 +197,7 @@ width:100%;
             <!-- Transcriber's comments --> 
             <div class="form-group">
                 <label class="control-label" for="other">Contributors's Comments</label>
-                <textarea class="form-control" rows="5"  name="other" placeholder="Add here your comments, if you have any."></textarea>
+                <textarea class="form-control" rows="5" name="other" placeholder="Add here your comments, if you have any."></textarea>
             </div>
         
         </form>
@@ -224,12 +224,12 @@ width:100%;
     
     <div id="photo-link" class="col-md-7 col-md-offset-1">
         <!-- Start of Photo DIV (column) -->
-        <div id="imgHolder" data-spy="affix" data-offset-top="1" data-offset-bottom="550">
+        <div id="imgHolder" data-spy="affix" data-offset-top="1" data-offset-bottom="500">
             <div class="btn-group">
                 <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-eye-open"></i> Tutorial</a>
-		        <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window"  href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
-		        <a id="raw" href="" class="btn btn-sm btn-info fancybox" ><i class="glyphicon glyphicon-picture"></i> Overlay</a>
-	            <a id="flickr" rel="tooltip" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="" class="btn btn-sm btn-info"><i class="icon icon-flickr"></i> View on flickr</a>
+		        <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
+		        <a id="raw" href="" class="btn btn-sm btn-info fancybox"><i class="glyphicon glyphicon-picture"></i> Overlay</a>
+                <a id="flickr" rel="tooltip" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="https://www.flickr.com/photos/130806234@N04/sets/72157649954901537/" class="btn btn-sm btn-info"><i class="icon icon-flickr"></i> View on flickr</a>
                 <a id="down" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Only works for compliant browsers" download="" href="" class="btn btn-sm btn-info" ><i class="glyphicon glyphicon-download"></i> Download</a>
             </div>
             <!-- The container for the zoomer --> 
@@ -246,7 +246,7 @@ width:100%;
     <div class="modal-content">
 	<!-- Modal header --> 
 		<div class="modal-header">
-                <h3 class="lead">BM Bronze Age Index BAI-draw transcription tutorial</h3>
+                <h3 class="lead">New Forest Setley Plain POW Camp 65 Newspaper transcription and translation tutorial</h3>
             </div>
 	<!-- stepped modal body -->
 		<div id="0" class="modal-body" style="display:none">
@@ -280,7 +280,7 @@ width:100%;
                     Here are some further issues to watch out for:
                     </p>
 
-		<ol>
+		          <ol>
 		
                     <li>
                     The "top right corner" field is not present on all cards, but if it exists, it is normally a typological code
@@ -321,7 +321,6 @@ width:100%;
                     </li>
                     
                 </ol>
-
 
 		</div>
 
@@ -503,7 +502,7 @@ pybossa.taskLoaded(function(task, deferred) {
         div_map.css("width", "600px");
         div_map.css("background", "#000");
 
-        var copyright = "&copy; <a href='" + task.info.link + "'>British Museum</a>";
+        var copyright = "&copy; <a href='" + task.info.link + "'>New Forest National Park Authority 2015</a>";
 
         var extent = new OpenLayers.Bounds();
         extent.extend(new OpenLayers.LonLat(1.758939,58.672231).transform(new OpenLayers.Projection("EPSG:4326"),
@@ -582,9 +581,9 @@ pybossa.presentTask(function(task, deferred) {
            .removeAttr('selected');
       
       	$("a#raw").attr("href", task.info.url_b);
-	$("a#flickr").attr("href", task.info.link + '/sizes/k/');
-	$("a#down").attr("download", task.id);
-	$("a#down").attr("href", task.info.url_b );
+	    $("a#flickr").attr("href", task.info.link + '/sizes/k/');
+	    $("a#down").attr("download", task.id);
+	    $("a#down").attr("href", task.info.url_b );
         $(".fancybox").fancybox();
         $('#imgLink').tooltip();
         $("[rel=tooltip]").tooltip();
@@ -594,22 +593,7 @@ pybossa.presentTask(function(task, deferred) {
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
 
-        // Clean
-        $('select[name=dateDiscoveryYear]').html('').append($('<option/>').val('None').html('Year'));
-        for (i = 1700; i < 2000; i++) {
-            $('select[name=dateDiscoveryYear]').append($('<option />').val(i).html(i));
-        }
-
-        $('select[name=dateDiscoveryMonth]').html('').append($('<option/>').val('None').html('Month'));
-        for (i = 1; i <= 12; i++)  {
-            $('select[name=dateDiscoveryMonth]').append($('<option />').val(i).html(i));
-        }
-
-        $('select[name=dateDiscoveryDay]').html('').append($('<option/>').val('None').html('Day'));
-        for (i = 1; i <= 31; i++) {
-            $('select[name=dateDiscoveryDay]').append($('<option />').val(i).html(i));
-        }
-
+        
         $('.btn-answer').off('click').on('click', function(evt) {
             evt.preventDefault();
             var answer = $(evt.target).attr("value");
