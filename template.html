@@ -501,13 +501,10 @@ pybossa.presentTask(function(task, deferred) {
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
 
-        $('.btn-answer').off('click').on('click', function() {
-
-            // evt.preventDefault();
-            // var answer = $(evt.target).attr("value");
+        $('.btn-answer').off('click').on('click', function(evt) {
             
-            var appdata = $("#trans").data();
-            var answer = appdata.getData();
+            evt.preventDefault();
+            var answer = $(evt.target).attr("value");
 
             if (typeof answer !== 'undefined') {
                 console.log(answer);
