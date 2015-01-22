@@ -507,12 +507,14 @@ pybossa.presentTask(function(task, deferred) {
                 console.log(answer);
 
                 pybossa.saveTask(task.id, task.answer).done(function() {
-                $("#img_" + task.id).hide();
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-                $("#success").fadeIn(500).fadeOut(5500);
-                $("#loading").fadeIn(500).fadeOut(1000);
-                deferred.resolve();
-              });
+                    $("#map_" + task.id).hide();
+                    $("#img_" + task.id).hide();
+                    //$('#img_task_' + task.id).trigger('wheelzoom.reset');
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $("#success").fadeIn(500).fadeOut(5500);
+                    $("#loading").fadeIn(500).fadeOut(1000);
+                    deferred.resolve();
+                });
               $("#loading").fadeIn(500);
                 
               }
@@ -538,7 +540,6 @@ else {
     $(".skeleton").hide();
     $("#oldbrowser").show();
 }
-
 $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
