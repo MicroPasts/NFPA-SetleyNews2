@@ -174,37 +174,27 @@ width:100%;
 <div class="row skeleton">
 
     <div id="questions" class="col-md-4"><!-- Start of Question and Submission DIV (column) -->
-
         <!-- If the user clicks this button, the saved answer will be value="yes"-->
-        <form id="transcription" role="form">
-            
+        <form id="trans" role="form">        
             <!-- Transcription --> 
             <div class="form-group">
                 <label class="control-label" for="transcription">Page Transcription</label>
                 <textarea class="form-control" rows="10" name="transcription" placeholder="Please transcribed the page as accurately as possible."></textarea>
             </div>
-
-            <hr />
-
             <!-- Translation --> 
             <div class="form-group">
                 <label class="control-label" for="translation">Page Translation</label>
                 <textarea class="form-control" rows="10" name="translation" placeholder="Please translate the text to English."></textarea>
             </div>
-
-            <hr />
-
             <!-- Transcriber's comments --> 
             <div class="form-group">
                 <label class="control-label" for="other">Contributors's Comments</label>
                 <textarea class="form-control" rows="5" name="other" placeholder="Add here your comments, if you have any."></textarea>
-            </div>
-        
+            </div>    
         </form>
-
         <button class="btn btn-info btn-answer" value='Yes'>Submit the task</button>
             
-	<!-- Feedback items for the user -->
+	   <!-- Feedback items for the user -->
         <p>
             You are working now on task: <span id="task-id" class="label label-warning">#</span>
         </p>
@@ -220,8 +210,7 @@ width:100%;
     </div>
     <!-- End of Question and Submission DIV (column) -->
     
-    <!-- The column holding the open layers div --> 
-    
+    <!-- The column holding the open layers div -->    
     <div id="photo-link" class="col-md-7 col-md-offset-1">
         <!-- Start of Photo DIV (column) -->
         <div id="imgHolder" data-spy="affix" data-offset-top="1" data-offset-bottom="500">
@@ -355,44 +344,43 @@ width:100%;
   </div>
 </div>
 <!-- Modal end --> 
+
 <script>
-    var step = -1;
-    function showStep(action) {
-        $("#" + step).hide();
-        if (action == 'next') {
-            step = step + 1;
-        }
-        if (action == 'prev') {
-            step = step - 1;
-        }
-        if (step == 0) {
-            $("#prevBtn").hide();
-        }
-        else {
-            $("#prevBtn").show();
-        }
-
-        if (step == 3 ) {
-            $("#nextBtn").hide();
-            $("#startContrib").show();
-        }
-        $("#" + step).show();
+var step = -1;
+function showStep(action) {
+    $("#" + step).hide();
+    if (action == 'next') {
+        step = step + 1;
     }
+    if (action == 'prev') {
+        step = step - 1;
+    }
+    if (step == 0) {
+        $("#prevBtn").hide();
+    }
+    else {
+        $("#prevBtn").show();
+    }
+    if (step == 3) {
+        $("#nextBtn").hide();
+        $("#startContrib").show();
+    }
+    $("#" + step).show();
+}
 
-    showStep('next');
-    $("#modal").modal('show');
+showStep('next');
+$("#modal").modal('show');
 </script>
 
-
 <!-- The modernizer script --> 
-
 <script>
 // Quick fix for IE8
 Modernizr.load({
-  test: window.JSON,
-  nope: '/static/js/vendor/json2.min.js'
+    test: window.JSON,
+    nope: '/static/js/vendor/json2.min.js'
 });
 </script>
+
 <!-- The main pybossa functions --> 
 <script>
 function loadUserProgress() {
@@ -418,81 +406,6 @@ function loadUserProgress() {
 </script>
 
 <script>
-var geocoder;
-var map;
-var marker;
-    
-function initialize(){
-//MAP
-  var latlng = new google.maps.LatLng(54, -2);
-  var options = {
-    zoom: 4,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
-  };
-        
-  map = new google.maps.Map(document.getElementById("map"), options);
-        
-  //GEOCODER
-  geocoder = new google.maps.Geocoder();
-        
-  marker = new google.maps.Marker({
-    map: map,
-    draggable: true
-  });
-				
-}
-		
-$(document).ready(function() { 
-         
-  initialize();
-				  
-  $(function() {
-    $("#toSearch").autocomplete({
-      //This bit uses the geocoder to fetch address values
-      source: function(request, response) {
-        geocoder.geocode( {'address': request.term }, function(results, status) {
-          response($.map(results, function(item) {
-            return {
-              label:  item.formatted_address,
-              value: item.formatted_address,
-              latitude: item.geometry.location.lat(),
-              longitude: item.geometry.location.lng()
-            }
-          }));
-        })
-      },
-      //This bit is executed upon selection of an address
-      select: function(event, ui) {
-        $("#lat").val(ui.item.latitude);
-        $("#lon").val(ui.item.longitude);
-        var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-        console.log('Latitude: ' + ui.item.latitude);
-        console.log('Longitude: ' + ui.item.longitude);
-        marker.setPosition(location);
-        map.setCenter(location);
-      }
-    });
-  });
-	
-  //Add listener to marker for reverse geocoding
-  google.maps.event.addListener(marker, 'drag', function() {
-    geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          $('#toSearch').val(results[0].formatted_address);
-          $('#lat').val(marker.getPosition().lat());
-          $('#lon').val(marker.getPosition().lng());
-          console.log('Longitude: ' + marker.getPosition().lng());
-          console.log('Latitude: ' + marker.getPosition().lat());
-        }
-      }
-    });
-  });
-  
-});  
-</script>
-<script>
 pybossa.taskLoaded(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         var img = $('<img />');
@@ -511,7 +424,6 @@ pybossa.taskLoaded(function(task, deferred) {
         extent.extend(new OpenLayers.LonLat(-6.99745,49.96112).transform(new OpenLayers.Projection("EPSG:4326"),
         new OpenLayers.Projection('EPSG:900913')));
 
-
         $("#imgContainer").append(div_map);
         div_map.attr("id", "img_" + task.id);
 
@@ -522,8 +434,8 @@ pybossa.taskLoaded(function(task, deferred) {
         });
 
         task.map_img = new ol.Map({
-          //interactions: ol.interaction.defaults().extend([task.select, task.modify]),
-          layers: [
+            //interactions: ol.interaction.defaults().extend([task.select, task.modify]),
+            layers: [
             new ol.layer.Image({
               source: new ol.source.ImageStatic({
                 attributions: [
@@ -548,7 +460,6 @@ pybossa.taskLoaded(function(task, deferred) {
         });
         div_map.css("display", "none");
 
-
         // load image from flickr
         var img = $('<img />');
         img.attr("id", "img_task_" + task.id);
@@ -563,87 +474,48 @@ pybossa.taskLoaded(function(task, deferred) {
         img.css("cursor", "zoom-in");
         task.info.image = img;
 
-        
-        }  else {
-            deferred.resolve(task);
-        }
-
+    }  else {
+        deferred.resolve(task);
+    }
 });
 </script>
+
 <script>
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
-        $(':input','#transcription')
+        $(':input','#trans')
            .not(':button, :submit, :reset, :hidden, :radio')
            .val('')
            .removeAttr('checked')
            .removeAttr('selected');
-      
       	$("a#raw").attr("href", task.info.url_b);
-	    $("a#flickr").attr("href", task.info.link + '/sizes/k/');
+	    $("a#flickr").attr("href", task.info.link);
 	    $("a#down").attr("download", task.id);
-	    $("a#down").attr("href", task.info.url_b );
+	    $("a#down").attr("href", task.info.url_b);
         $(".fancybox").fancybox();
-        $('#imgLink').tooltip();
-        $("[rel=tooltip]").tooltip();
-        $("#searchingTip").hide();
+        $('#imgLink').tooltip();   
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
-        $("#map_" + task.id).show();
         $("#img_" + task.id).show();
 
-        
         $('.btn-answer').off('click').on('click', function(evt) {
             evt.preventDefault();
             var answer = $(evt.target).attr("value");
+
             if (typeof answer !== 'undefined') {
                 console.log(answer);
-                if (answer === 'search') {
-                    $("#searching").show();
-                    search(task, $("#toSearch").val(), 15);
-                } else {
-                    task.answer = $("#transcription").serializeJSON();
-                    console.log(task.answer);
-                   if($('#lon').val()) {
-                   var geojson = {
-                       "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                        $('#lon').val(),
-                                        $('#lat').val()
-                                ]
-                        },
-                        "crs": {
-                          "type": "name",
-                          "properties": {
-                            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-                          }
-                        },
-                        "type": "Feature",
-                        "properties": {
 
-                        }
-                   };
-                   console.log(geojson);
-                    task.answer.geojson = geojson;
-                }
-                    task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
-                    task.answer.site = task.answer.site.replace(/\r\n/g,', ');
-                    console.log(task.answer);
-                    
-                    pybossa.saveTask(task.id, task.answer).done(function() {
-                        $("#map_" + task.id).hide();
-                        $("#img_" + task.id).hide();
-                        //$('#img_task_' + task.id).trigger('wheelzoom.reset');
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
-                        $("#success").fadeIn(500).fadeOut(5500);
-                        $("#loading").fadeIn(500).fadeOut(1000);
-                        deferred.resolve();
-                    });
-                    $("#loading").fadeIn(500);
-                    
-                }
+                pybossa.saveTask(task.id, task.answer).done(function() {
+                $("#img_" + task.id).hide();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("#success").fadeIn(500).fadeOut(5500);
+                $("#loading").fadeIn(500).fadeOut(1000);
+                deferred.resolve();
+              });
+              $("#loading").fadeIn(500);
+                
+              }
             } else {
                 console.log(answer);
                 console.log(typeof(answer));
@@ -666,6 +538,7 @@ else {
     $(".skeleton").hide();
     $("#oldbrowser").show();
 }
+
 $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
