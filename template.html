@@ -501,9 +501,13 @@ pybossa.presentTask(function(task, deferred) {
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
 
-        $('.btn-answer').off('click').on('click', function(evt) {
-            evt.preventDefault();
-            var answer = $(evt.target).attr("value");
+        $('.btn-answer').off('click').on('click', function() {
+
+            // evt.preventDefault();
+            // var answer = $(evt.target).attr("value");
+            
+            var appdata = $("#trans").data();
+            var answer = appdata.getData();
 
             if (typeof answer !== 'undefined') {
                 console.log(answer);
@@ -535,8 +539,8 @@ pybossa.presentTask(function(task, deferred) {
                         "properties": {
 
                         }
-                   };
-                   console.log(geojson);
+                    };
+                    console.log(geojson);
                     task.answer.geojson = geojson;
                 }
                     task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
