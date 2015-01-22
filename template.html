@@ -67,7 +67,7 @@ width:100%;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
-        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1Foe1CCfd4K_ZmtX2W8MDsoSjjDi5zd5DLgG7yRVn2HQ/viewform?embedded=true">Of course! Take me to the survey!</a>
+        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1VtlhpPmo4CFbCHUJ0L_aX6K31IyTGrX6okR7pV80Rnc/viewform?embedded=true">Of course! Take me to the survey!</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -95,7 +95,7 @@ width:100%;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
-        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1WTVapZ2Qdq0AIRazG-onDrVYDtb9xAnid7LwLrR3Uqw/viewform?embedded=true">Of course! Take me to the survey!</a>
+        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1hPo2IEP0BZJccVlA2OduW3DG987GBSVwB7y-ilEL5vg/viewform?embedded=true">Of course! Take me to the survey!</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -397,7 +397,7 @@ Modernizr.load({
 <!-- The main pybossa functions --> 
 <script>
 function loadUserProgress() {
-    pybossa.userProgress('NFPOWnewsletters').done(function(data){
+    pybossa.userProgress('NFPOWnewsletters01').done(function(data){
         console.log(data);
         console.log("Total answers done for user: " + data.done);
         if ((data.done == 1) && ($.cookie('surveyNFPOWnewsletters') === undefined)){
@@ -676,7 +676,7 @@ pybossa.presentTask(function(task, deferred) {
 });
 
 if(Modernizr.borderradius) {
-    pybossa.run('NFPOWnewsletters');
+    pybossa.run('NFPOWnewsletters01');
 }
 else {
     $(".skeleton").hide();
