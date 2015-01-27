@@ -442,7 +442,7 @@ pybossa.taskLoaded(function(task, deferred) {
                     html: copyright
                   })
                 ],
-                url: task.info.url_o,
+                url: task.info.url_b,
                 imageSize: [1021, 1560],
                 projection: task.pixelProjection,
                 imageExtent: task.pixelProjection.getExtent()
@@ -466,7 +466,7 @@ pybossa.taskLoaded(function(task, deferred) {
             // continue as soon as the image is loaded
             deferred.resolve(task);
         });
-        img.attr('src', task.info.url_o);
+        img.attr('src', task.info.url_b);
         img.attr('width', '600px');
         img.attr('height', '390px');
         img.addClass('img-polaroid');
@@ -490,10 +490,10 @@ pybossa.presentTask(function(task, deferred) {
            .removeAttr('checked')
            .removeAttr('selected');
 
-        $("a#raw").attr("href", task.info.url_o);
+        $("a#raw").attr("href", task.info.url_b);
         $("a#flickr").attr("href", task.info.link + '/sizes/k/');
         $("a#down").attr("download", task.id);
-        $("a#down").attr("href", task.info.url_o);
+        $("a#down").attr("href", task.info.url_b);
         $(".fancybox").fancybox();
         $("[rel=tooltip]").tooltip();
         $("#question").html(task.info.question);
