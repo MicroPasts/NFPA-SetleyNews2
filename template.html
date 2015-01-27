@@ -514,26 +514,11 @@ pybossa.presentTask(function(task, deferred) {
                 //} else {
                 task.answer = $("#trans").serializeJSON();
 
-                // --> New Addition    
                 task.answer.transcription = $('#transcription').val();
                 task.answer.translation = $('#translation').val();
                 task.answer.other = $('#other').val();
-
-                var geojson = {
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                            $('#lon').val(),
-                            $('#lat').val()
-                        ]
-                    }
-                };
-                console.log(geojson);
-                task.answer.geojson = geojson;
+   
                 console.log(task.answer);
-                // <-- New Addition     
-
-                    //console.log(task.answer);
 
                     if($('#lon').val()) {
                     var geojson = {
