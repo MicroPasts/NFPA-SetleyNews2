@@ -489,7 +489,7 @@ pybossa.presentTask(function(task, deferred) {
            .val('')
            .removeAttr('checked')
            .removeAttr('selected');
-           
+
         $("a#raw").attr("href", task.info.url_b);
         $("a#flickr").attr("href", task.info.link + '/sizes/k/');
         $("a#down").attr("download", task.id);
@@ -552,6 +552,11 @@ pybossa.presentTask(function(task, deferred) {
                     $("#loading").fadeIn(500).fadeOut(1000);
                     deferred.resolve();
                 });
+
+                $('#transcription').val('');    
+                $('#translation').val('');  
+                $('#other').val('');      
+
                 $("#loading").fadeIn(500);               
             }
         } else {
