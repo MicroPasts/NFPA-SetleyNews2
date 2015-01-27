@@ -510,12 +510,12 @@ pybossa.presentTask(function(task, deferred) {
                 console.log(answer);
 
                 // Clean up this code    
-                //if (answer === 'search') {
-                //    $("#searching").show();
-                //    search(task, $("#toSearch").val(), 15);
-                //} else {
-                //    task.answer = $("#trans").serializeJSON();
-                //    console.log(task.answer);
+                if (answer === 'search') {
+                    $("#searching").show();
+                    search(task, $("#toSearch").val(), 15);
+                } else {
+                    task.answer = $("#trans").serializeJSON();
+                    console.log(task.answer);
                 //   if($('#lon').val()) {
                 //   var geojson = {
                 //       "geometry": {
