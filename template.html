@@ -540,8 +540,8 @@ pybossa.presentTask(function(task, deferred) {
                     task.answer.geojson = geojson;
                 }
 
-                //task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
-                //task.answer.site = task.answer.site.replace(/\r\n/g,', ');
+                task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
+                task.answer.site = task.answer.site.replace(/\r\n/g,', ');
                 console.log(task.answer);
                 // <-- Clean up this code 
 
