@@ -495,7 +495,7 @@ pybossa.presentTask(function(task, deferred) {
         $("a#down").attr("download", task.id);
         $("a#down").attr("href", task.info.url_o);
         $(".fancybox").fancybox();
-        $('#imgLink').tooltip();
+        $("[rel=tooltip]").tooltip();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
