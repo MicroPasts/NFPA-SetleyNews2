@@ -484,11 +484,11 @@ pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
 
-        //$(':input','#trans')
-        //   .not(':button, :submit, :reset, :hidden, :radio')
-        //   .val('')
-        //   .removeAttr('checked')
-        //   .removeAttr('selected');
+        $(':input','#trans')
+           .not(':button, :submit, :reset, :hidden, :radio')
+           .val('')
+           .removeAttr('checked')
+           .removeAttr('selected');
 
         $("a#raw").attr("href", task.info.url_o);
         $("a#flickr").attr("href", task.info.link);
