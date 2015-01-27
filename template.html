@@ -489,7 +489,7 @@ pybossa.presentTask(function(task, deferred) {
            .val('')
            .removeAttr('checked')
            .removeAttr('selected');
-
+           
         $("a#raw").attr("href", task.info.url_b);
         $("a#flickr").attr("href", task.info.link + '/sizes/k/');
         $("a#down").attr("download", task.id);
@@ -501,11 +501,9 @@ pybossa.presentTask(function(task, deferred) {
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
 
-        $('.btn-answer').off('click').on('click', function(evt) {
-            
-            evt.preventDefault();
+        $('.btn-answer').off('click').on('click', function(evt) {       
+            //evt.preventDefault();
             var answer = $(evt.target).attr("value");
-
             if (typeof answer !== 'undefined') {
                 console.log(answer);
 
@@ -514,10 +512,11 @@ pybossa.presentTask(function(task, deferred) {
                 //    $("#searching").show();
                 //    search(task, $("#toSearch").val(), 15);
                 //} else {
-                    task.answer = $("#trans").serializeJSON();
-                    console.log(task.answer);
-                   if($('#lon').val()) {
-                   var geojson = {
+                task.answer = $("#trans").serializeJSON();
+                    //console.log(task.answer);
+
+                    if($('#lon').val()) {
+                    var geojson = {
                        "geometry": {
                             "type": "Point",
                             "coordinates": [
