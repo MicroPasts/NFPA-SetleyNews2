@@ -513,6 +513,26 @@ pybossa.presentTask(function(task, deferred) {
                 //    search(task, $("#toSearch").val(), 15);
                 //} else {
                 task.answer = $("#trans").serializeJSON();
+
+                // --> New Addition    
+                task.answer.transcription = $('#transcription').val();
+                task.answer.translation = $('#translation').val();
+                task.answer.other = $('#other').val();
+
+                var geojson = {
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            $('#lon').val(),
+                            $('#lat').val()
+                        ]
+                    }
+                };
+                console.log(geojson);
+                task.answer.geojson = geojson;
+                console.log(task.answer);
+                // <-- New Addition     
+
                     //console.log(task.answer);
 
                     if($('#lon').val()) {
@@ -521,7 +541,7 @@ pybossa.presentTask(function(task, deferred) {
                             "type": "Point",
                             "coordinates": [
                                   $('#lon').val(),
-                                        $('#lat').val()
+                                  $('#lat').val()
                                 ]
                         },
                         "crs": {
