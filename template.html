@@ -171,9 +171,10 @@ width:100%;
 
 </div>
 
+<!-- Start of Question and Submission DIV (column) -->
 <div class="row skeleton">
 
-    <div id="questions" class="col-md-4"><!-- Start of Question and Submission DIV (column) -->
+    <div id="questions" class="col-md-4">
         <!-- If the user clicks this button, the saved answer will be value="yes"-->
         <form id="trans" role="form">        
             <!-- Transcription --> 
@@ -194,12 +195,10 @@ width:100%;
         </form>
         <button class="btn btn-info btn-answer" value='Yes'>Submit the task</button>
             
-       <!-- Feedback items for the user -->
+        <!-- Feedback items for the user -->
+        <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
         <p>
-            You are working now on task: <span id="task-id" class="label label-warning">#</span>
-        </p>
-        <p>
-            You have completed: <span id="done" class="label label-info"></span> tasks from
+        You have completed: <span id="done" class="label label-info"></span> tasks from
         <!-- Progress bar for the user -->
         <span id="total" class="label label-inverse"></span></p>
         <div class="progress progress-striped">
@@ -443,7 +442,7 @@ pybossa.taskLoaded(function(task, deferred) {
                     html: copyright
                   })
                 ],
-                url: task.info.url_b,
+                url: task.info.url_o,
                 imageSize: [1021, 1560],
                 projection: task.pixelProjection,
                 imageExtent: task.pixelProjection.getExtent()
@@ -467,7 +466,7 @@ pybossa.taskLoaded(function(task, deferred) {
             // continue as soon as the image is loaded
             deferred.resolve(task);
         });
-        img.attr('src', task.info.url_b);
+        img.attr('src', task.info.url_o);
         img.attr('width', '600px');
         img.attr('height', '390px');
         img.addClass('img-polaroid');
@@ -484,18 +483,19 @@ pybossa.taskLoaded(function(task, deferred) {
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
-        $(':input','#trans')
-           .not(':button, :submit, :reset, :hidden, :radio')
-           .val('')
-           .removeAttr('checked')
-           .removeAttr('selected');
-        $("a#raw").attr("href", task.info.url_b);
-        $("a#flickr").attr("href", task.info.link + '/sizes/k/');
+
+        //$(':input','#trans')
+        //   .not(':button, :submit, :reset, :hidden, :radio')
+        //   .val('')
+        //   .removeAttr('checked')
+        //   .removeAttr('selected');
+
+        $("a#raw").attr("href", task.info.url_o);
+        $("a#flickr").attr("href", task.info.link);
         $("a#down").attr("download", task.id);
-        $("a#down").attr("href", task.info.url_b);
+        $("a#down").attr("href", task.info.url_o);
         $(".fancybox").fancybox();
-        $("[rel=tooltip]").tooltip();
-        $("#searchingTip").hide();
+        $('#imgLink').tooltip();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
@@ -509,42 +509,41 @@ pybossa.presentTask(function(task, deferred) {
             if (typeof answer !== 'undefined') {
                 console.log(answer);
 
-
                 // Clean up this code    
-                if (answer === 'search') {
-                    $("#searching").show();
-                    search(task, $("#toSearch").val(), 15);
-                } else {
-                    task.answer = $("#trans").serializeJSON();
-                    console.log(task.answer);
-                   if($('#lon').val()) {
-                   var geojson = {
-                       "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                        $('#lon').val(),
-                                        $('#lat').val()
-                                ]
-                        },
-                        "crs": {
-                          "type": "name",
-                          "properties": {
-                            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-                          }
-                        },
-                        "type": "Feature",
-                        "properties": {
+                //if (answer === 'search') {
+                //    $("#searching").show();
+                //    search(task, $("#toSearch").val(), 15);
+                //} else {
+                //    task.answer = $("#trans").serializeJSON();
+                //    console.log(task.answer);
+                //   if($('#lon').val()) {
+                //   var geojson = {
+                //       "geometry": {
+                //            "type": "Point",
+                //            "coordinates": [
+                //                        $('#lon').val(),
+                //                        $('#lat').val()
+                //                ]
+                //        },
+                //        "crs": {
+                //          "type": "name",
+                //          "properties": {
+                //            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                //          }
+                //        },
+                //        "type": "Feature",
+                //        "properties": {
 
-                        }
-                    };
-                    console.log(geojson);
-                    task.answer.geojson = geojson;
+                //        }
+                //    };
+                //    console.log(geojson);
+                //    task.answer.geojson = geojson;
                 }
-                    task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
-                    task.answer.site = task.answer.site.replace(/\r\n/g,', ');
-                    console.log(task.answer);
-                // Clean up this code 
 
+                //task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
+                //task.answer.site = task.answer.site.replace(/\r\n/g,', ');
+                console.log(task.answer);
+                // Clean up this code 
 
                 pybossa.saveTask(task.id, task.answer).done(function() {
                     $("#map_" + task.id).hide();    
