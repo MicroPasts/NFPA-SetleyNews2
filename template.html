@@ -449,19 +449,25 @@ pybossa.presentTask(function(task, deferred) {
             if (typeof answer !== 'undefined') {
                 console.log(answer);
 
-                // --> Clean up this code    
+
+                // --> Clean up this code *************************
+
                 //if (answer === 'search') {
                 //    $("#searching").show();
                 //    search(task, $("#toSearch").val(), 15);
                 //} else {
                 task.answer = $("#trans").serializeJSON();
 
+                // Possibly the next 3 shouldn't be here
                 task.answer.transcription = $('#transcription').val();
                 task.answer.translation = $('#translation').val();
                 task.answer.other = $('#other').val();
    
                 console.log(task.answer);
 
+
+                // The following code looks like remnants from the Google Map, but if erased the imgContainer wouldn't show...
+                    
                     if($('#lon').val()) {
                     var geojson = {
                        "geometry": {
@@ -489,7 +495,9 @@ pybossa.presentTask(function(task, deferred) {
                 //task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
                 //task.answer.site = task.answer.site.replace(/\r\n/g,', ');
                 console.log(task.answer);
-                // <-- Clean up this code 
+
+                // <-- Clean up this code *************************
+
 
                 pybossa.saveTask(task.id, task.answer).done(function() {
                     // $("#map_" + task.id).hide();    
