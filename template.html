@@ -27,26 +27,25 @@
     #map_canvas img {
         max-width: none;
     }
-    .affix {
+    /*.affix {
         width: inherit;
         height: 0px;
     }
   
     .affix-bottom {
-        /* top: auto !important; */
+        top: auto !important;
         position: fixed;
         bottom: 240px;
-    }
+    } */
     
     #imgContainer {
         height: 390px;
         width: 600px;
     } 
-#map {
-height:400px;
-width:100%;
-}
-
+    #map {
+        height:400px;
+        width:100%;
+    }
 </style>
 
 <div id="survey" class="modal fade" data-backdrop="static">
@@ -212,7 +211,7 @@ width:100%;
     <!-- The column holding the open layers div -->    
     <div id="photo-link" class="col-md-7 col-md-offset-1">
         <!-- Start of Photo DIV (column) -->
-        <div id="imgHolder" data-spy="affix" data-offset-top="1" data-offset-bottom="500">
+        <div id="imgHolder"> <!-- data-spy="affix" data-offset-top="1" data-offset-bottom="500" -->
             <div class="btn-group">
                 <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-eye-open"></i> Tutorial</a>
                 <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
