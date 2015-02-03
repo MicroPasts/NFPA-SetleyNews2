@@ -216,7 +216,7 @@
                 <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-eye-open"></i> Tutorial</a>
                 <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
                 <a id="raw" href="" class="btn btn-sm btn-info fancybox"><i class="glyphicon glyphicon-picture"></i> Overlay</a>
-                <a id="flickr" rel="tooltip" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="https://www.flickr.com/photos/130806234@N04/sets/72157649954901537/" class="btn btn-sm btn-info"><i class="icon icon-flickr"></i> View on flickr</a>
+                <a id="flickr" rel="tooltip" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="" class="btn btn-sm btn-info"><i class="icon icon-flickr"></i> View on flickr</a>
                 <a id="down" rel="tooltip" data-toggle="tooltip" data-placement="top" title="Only works for compliant browsers" download="" href="" class="btn btn-sm btn-info" ><i class="glyphicon glyphicon-download"></i> Download</a>
             </div>
             <!-- The container for the zoomer --> 
@@ -355,7 +355,7 @@ pybossa.taskLoaded(function(task, deferred) {
         div_map.css("width", "600px");
         div_map.css("background", "#000");
 
-        var copyright = "&copy; <a href='" + task.info.link + "'>New Forest National Park Authority 2015</a>";
+        var copyright = "&copy; <a href='http://www.newforestnpa.gov.uk'>New Forest National Park Authority 2015</a>";
 
         var extent = new OpenLayers.Bounds();
         extent.extend(new OpenLayers.LonLat(1.758939,58.672231).transform(new OpenLayers.Projection("EPSG:4326"),
