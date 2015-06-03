@@ -163,19 +163,14 @@
     <div id="questions" class="col-md-4">
         <!-- If the user clicks this button, the saved answer will be value="yes"-->
         <form id="trans" role="form">        
-            <!-- Transcription --> 
-            <div class="form-group">
-                <label class="control-label" for="transcription">Page Transcription</label>
-                <textarea class="form-control" rows="10" name="transcription" placeholder="Please transcribed the page as accurately as possible."></textarea>
-            </div>
             <!-- Translation --> 
             <div class="form-group">
                 <label class="control-label" for="translation">Page Translation</label>
                 <textarea class="form-control" rows="10" name="translation" placeholder="Please translate the text to English."></textarea>
             </div>
-            <!-- Transcriber's comments --> 
+            <!-- Translator's comments --> 
             <div class="form-group">
-                <label class="control-label" for="other">Contributors's Comments</label>
+                <label class="control-label" for="other">Translator's Comments</label>
                 <textarea class="form-control" rows="5" name="other" placeholder="Add here your comments, if you have any."></textarea>
             </div>    
         </form>
@@ -219,46 +214,42 @@
   <div class="modal-dialog">
     <div class="modal-content">
     <!-- Modal header --> 
-        <div class="modal-header">
-                <h3 class="lead">New Forest Setley Plain POW Camp 65 Newspaper transcription and translation tutorial</h3>
+            <div class="modal-header">
+                <h3 class="lead">New Forest Setley Plain POW Camp 65 Newspaper translation tutorial</h3>
             </div>
-        <!-- stepped modal body -->
             <div id="0" class="modal-body" style="display:none">
                 <p>
-                This application consists of two parts: transcription and translation. The platform will load a scanned page from the New Forest National Park Authority's 'newsletters' produced by German Prisoners of War (POW) held in Setley Plain POW Camp 65 (stored on the NFNPA <a href="https://www.flickr.com/photos/newforestheritage/">Flickr</a> stream). Once the image has been loaded, you will be asked to transcribe and translate the contents of each page. An example portion of a newsletter's page is provided below:
+                This application is for contributors with good German language skills and asks you to translate a page from a newsletter written by German POWs at the Setley Plain camp, New Forest. 
+                The platform will load a scanned page (stored on the New Forest Park Authority's <a href="https://www.flickr.com/photos/newforestheritage/">Flickr</a> stream). 
+                Once the image has been loaded, you will be asked to translate the contents of the page. An example portion of a newsletter's page is provided below:
                 </p>
-                <img src="http://micropasts.org/wp-content/uploads/2015/01/POW_Sample_Tutorial.png" class="img-polaroid" alt="An example of one of the Bronze Age Index cards" width="75%" height="75%"/>
+                <img src="http://micropasts.org/wp-content/uploads/2015/01/POW_Sample_Tutorial.png" class="img-polaroid" alt="An example of one of the POW newsletter pages" width="75%" height="75%"/>
             </div>
             <div id="1" class="modal-body" style="display:none">
                 <p>
-                Some further bits of guidance as you transcribe:
+                Some further bits of guidance as you translate:
                 <ul>    
-                    <li>Please transcribe the text as accurately as possible, following the original letter/word case, lines and punctuation.</li> 
-                    <li>Try to enter all the text that you see, in the right order.</li>
-                    <li>To denote a new line, use the following symbol: [;]. For example, the text in the sample below should be entered this way: LAGER-BERICHT[;]geschrieben und zusammengestellt von[;]Ludwig Mueller Oberlagerfuerer[;]Kurt Sender Stellvertr.[;]Herbert Haukelt Quartiermeister[;]Noch waren wir mitten im Aufbau...</li>     
+                	<li>Please translate this document only if you are reasonably fluent in German - do not use Google Translate.</li>
+                    <li>Please translate the text as accurately as possible, following the original punctuation as much as possible.</li>   
                     <li>For special characters, you may insert them as they appear, or as the right equivalent of characters representing them. For example, the name Müller can be transcribed as 'Müller' (with the original Umlaut) or as 'Mueller' (With 'ue' replacing the Umlaut).</li>
                     <li>If a word is hard to decipher, do your best to identify it and make a comment to note the problem.</li>
                 </ul>            
                 </p>
-                <img src="http://micropasts.org/wp-content/uploads/2015/01/POW_Sample_Tutorial.png" class="img-polaroid" alt="An example of one of the Bronze Age Index cards" width="75%" height="75%"/>        
-            </div>
-            <div id="2" class="modal-body" style="display:none">
                 <p>
-                Some translation guidance:
-                <ul>    
-                    <li>Please translate this document only if you are fluent in German - do not use Google Translate.</li>
-                    <li>Translation format should be the same as for transcription. For example, the text in the previous page should be entered as follows: CAMP REPORT[;]written and compiled by[;]Ludwig Mueller Senior Camp Leader[;]Kurt Sender Deputy[;]Herbert Haukelt Quartermaster[;]We were still in the middle of construction...</li>
-                    <li>As with the transcription, if a word is hard to decipher, do your best to identify it and make a comment to note the problem.</li>    
-                </ul>            
-                </p>
-                <p>
-                During the transcription and translation, you can always return to this tutorial via the "Tutorial" button.
+                During the translation, you can always return to this tutorial via the "Tutorial" button.
                 </p>
                 <p>
                 To find out how the project is progressing, suggest changes to this application or
                 propose new research ideas based what you have transcribed and translated, please have a look at our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
                 </p>
+                <img src="http://micropasts.org/wp-content/uploads/2015/01/POW_Sample_Tutorial.png" class="img-polaroid" alt="An example of one of the Bronze Age Index cards" width="75%" height="75%"/>        
             </div>
+            <div class="modal-footer">
+                <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
+                <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
+                <a id="startContrib" href="../NFPA-SetleyNews2/newtask" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
+            </div>
+      </div>
         <!-- End of stepped modal body -->
 
         <!-- Modal footer -->
@@ -288,7 +279,7 @@ function showStep(action) {
     else {
         $("#prevBtn").show();
     }
-    if (step == 2) {
+    if (step == 1) {
         $("#nextBtn").hide();
         $("#startContrib").show();
     }
