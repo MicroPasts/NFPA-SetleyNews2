@@ -311,7 +311,7 @@ Modernizr.load({
 <!-- The main pybossa functions --> 
 <script>
 function loadUserProgress() {
-    pybossa.userProgress('NFPOWnewsletters01').done(function(data){
+    pybossa.userProgress('NFPA-SetleyNews2').done(function(data){
         console.log(data);
         console.log("Total answers done for user: " + data.done);
         if ((data.done == 1) && ($.cookie('surveyNFPOWnewsletters') === undefined)){
@@ -464,7 +464,7 @@ pybossa.presentTask(function(task, deferred) {
 });
 
 if(Modernizr.borderradius) {
-    pybossa.run('NFPOWnewsletters01');
+    pybossa.run('NFPA-SetleyNews2');
 }
 else {
     $(".skeleton").hide();
